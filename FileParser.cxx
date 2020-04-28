@@ -73,6 +73,13 @@ void FileParser::OpenFile(TString fname, TString cyclename)
     fname.Prepend(Prefix);
   }  
 
+  // check if input filename has .root extension
+  // necessary for extracting process name and creating ratio plots
+  if (!fname.EndsWith(".root")){
+    cerr << "fInputFiles entry must end with .root, instead got " << fname << endl;;
+    exit(EXIT_FAILURE);
+  }
+
   // check if name consists of a wildcard, if so use hadd to combine histograms
   if (fname.Contains("*")){
     TString target(fname);
@@ -154,6 +161,12 @@ void FileParser::OpenThetaFile(TString cyclename)
 
   // fname = target;
 
+  // check if input filename has .root extension
+  // necessary for extracting process name and creating ratio plots
+  if (!fname.EndsWith(".root")){
+    cerr << "fCycleName must end with .root, instead got " << fname << endl;;
+    exit(EXIT_FAILURE);
+  }
 
   if (debug) cout << "Opening file with name " << fname << "..." << endl;
   m_file = new TFile(fname, "READ");

@@ -1034,7 +1034,7 @@ vector<SHist*> SPlotter::CalcRatios(vector<SHist*> hists)
     Double_t rel_err = err / val;
     rdhist->SetBinError(ibin, rel_err * rdhist->GetBinContent(ibin) );
   }
-  rdhist->GetYaxis()->SetTitle(rd->GetProcessName() + " / BG");
+  rdhist->GetYaxis()->SetTitle(rd->GetLegName() + " / BG");
   if (bSingleEPS){
     SingleEPSRatioCosmetics(rdhist);
   } else {
